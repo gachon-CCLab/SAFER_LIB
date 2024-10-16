@@ -94,6 +94,7 @@ class DataProcessor:
             first_date = group['targetTime'].min()
             crf_subset = self.crf_data[self.crf_data['이름'] == key].reset_index(drop=True)
             
+            #7일 간격으로 mapping
             for i, crf_row in crf_subset.iterrows():
                 start_date = first_date + pd.Timedelta(days=7 * i)
                 end_date = start_date + pd.Timedelta(days=7)
@@ -102,7 +103,7 @@ class DataProcessor:
                     if col not in ['이름', 'targetTime']:
                         self.merged_data.loc[mask, col] = crf_row[col]
             
-            # 응급 상황 처리
+            # 응급 상황 처리-> 기록지 생성 일자에 맞춰 매핑
             emergency_data = crf_subset[crf_subset['status'] == 'emergency']
             for emg_row in emergency_data.itertuples():
                 date_match = (self.merged_data['이름'] == key) & (self.merged_data['targetTime'].dt.date == getattr(emg_row, 'VE_tx_time').date())

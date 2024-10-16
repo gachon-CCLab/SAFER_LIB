@@ -6,8 +6,8 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     
-    name='gsecure', # 모듈 이름
-    version='0.0.7', # 버전
+    name='saferx', # 모듈 이름
+    version='0.0.2', # 버전
     long_description= long_description, # READ.md에 보통 모듈 해놓음
     long_description_content_type= 'text/markdown',
 
