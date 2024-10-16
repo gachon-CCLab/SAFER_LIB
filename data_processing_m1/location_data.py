@@ -27,6 +27,13 @@ class LocationProcessor:
             print("파일이 비어 있습니다.")
         except pd.errors.ParserError:
             print("파일을 파싱하는 중 오류가 발생했습니다.")
+            data = pd.read_csv(file_path,encoding='utf-8')
+            print(f"CSV 파일 {file_path}이 성공적으로 로드되었습니다.")
+            
+            # 위치 데이터 로드 및 전처리
+            data = LocationProcessor.load_location_data(data)
+            data = LocationProcessor.preprocess_location_data(data)
+            data = LocationProcessor.resample_and_calculate(data)
         except Exception as e:
             print(f"파일 로드 중 오류 발생: {e}")
         return None

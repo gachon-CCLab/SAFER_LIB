@@ -9,7 +9,7 @@ class PredictionHandler:
     def __init__(self, data_paths, batch_size=16, device='cpu',model_path=None):
         if model_path is None:
             # pkg_resources를 사용하여 패키지 내부 경로에서 모델 파일 로드
-            model_path = pkg_resources.resource_filename('gsecure', 'model1/model/tft_model.pkl')
+            model_path = pkg_resources.resource_filename('saferx', 'model1/model/tft_model.pkl')
         self.model_path = model_path
         self.data_paths = data_paths
         self.batch_size = batch_size

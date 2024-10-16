@@ -13,7 +13,7 @@ class Predictor:
         """
         
         if model_path is None :
-            model_path = pkg_resources.resource_filename('gsecure', './model2/model/final_model.pkl')
+            model_path = pkg_resources.resource_filename('saferx', './model2/model/final_model.pkl')
         # 기본 seq_cols 및 target_cols 고정
         self.seq_cols = [
             'Daily_Entropy', 'Normalized_Daily_Entropy', 'Eight_Hour_Entropy', 'Normalized_Eight_Hour_Entropy',

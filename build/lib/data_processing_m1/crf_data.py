@@ -99,7 +99,7 @@ class DataProcessor:
         for key, group in self.merged_data.groupby('이름'):
             first_date = group['targetTime'].min()
             crf_subset = self.crf_data[self.crf_data['이름'] == key].reset_index(drop=True)
-            
+            #7일 간격으로 mapping
             for i, crf_row in crf_subset.iterrows():
                 start_date = first_date + pd.Timedelta(days=7 * i)
                 end_date = start_date + pd.Timedelta(days=7)
@@ -201,10 +201,3 @@ class DataProcessor:
         return filtered_df
 
 
-# 예시 사용
-# data_processor = DataProcessor(location_data, sensor_data, crf_data, trait_data, self_harm_data)
-# merged_data = data_processor.merge_location_and_sensor()
-# processed_data = data_processor.process_crf_data()
-# trait_data = data_processor.merge_trait_data()
-# final_data = data_processor.clean_and_set_suicide_flag(suicide_flags)
-# filtered_data = data_processor.filter_data_for_self_harm_and_random()

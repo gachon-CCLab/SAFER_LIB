@@ -22,9 +22,7 @@ class SensorDataProcessor:
             chunks = []
 
             # 청크 단위로 데이터를 읽고 처리합니다.
-            for chunk in pd.read_csv(file_path, sep='\t', encoding='utf-8', chunksize=chunksize):
-                # 디버깅을 위해 현재 열 이름 출력
-                print("현재 열 이름:", chunk.columns.tolist())
+            for chunk in pd.read_csv(file_path, sep='\t', encoding='utf-8', chunksize=1000):
                 
                 # 필요한 컬럼들 정의
                 expected_columns = ['targetId', '이름', 'deviceId', '데이터', 'targetTime']
@@ -206,3 +204,4 @@ class SensorDataProcessor:
         except Exception as e:
             print(f"열 이름 재정렬 중 오류 발생: {e}")
         return None
+
